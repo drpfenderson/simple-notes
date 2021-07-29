@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Simple Offline Markdown Editor</title>
+
+  <script src="./marked.min.js"></script>
+</head>
+<body>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--neu-primary);
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+      min-width: 100vw;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .box {
+      margin: 20px;
+      padding: 20px;
+      width: 45%;
+      min-height: 20rem;
+      border: 1px solid #333;
+    }
+
+    #parsed {
+      padding: 0 20px;
+    }
+  </style>
+
+  <main class="container">
+    <textarea id="markdown" class="box" cols="64"></textarea>
+    <div id="parsed" class="box"></div>
+  </main>
+
+  <script>
+    const textarea = document.getElementById('markdown');
+    const parsed = document.getElementById('parsed');
+
+    textarea.oninput = (e) => {
+      parsed.innerHTML = marked(e.currentTarget.value);
+    }
+  </script>
+</body>
+</html>
